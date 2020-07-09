@@ -25,7 +25,10 @@ const state = {
       time: "4pm",
       interview: { student: "Chad Takahashi", interviewer: 2 }
     }
-  }
+  },
+  // interviewers : {
+
+  // }
 };
 
 export default function getAppointmentsForDay(state, day) {
@@ -43,3 +46,7 @@ export default function getAppointmentsForDay(state, day) {
   }
   return finalAppointments;
 }
+
+// export default function getInterview(state, interview) {
+
+// }

@@ -87,17 +87,36 @@ export default function Application(props) {
     
     Promise.all([
       axios.get(`/api/days`),
-      axios.get(`/api/appointments`)
+      axios.get(`/api/appointments`),
+      axios.get(`/api/interviewers`)
     ]).then((all) => {
       console.log(all[0]); // first
       console.log(all[1]); // second
+      
       setState(prev => ({...state, days: all[0].data,...appointments, appointments: all[1].data}));
-        
+      //^ ,...state, interviewers: all[2].data  
+
     })
       .catch(err => {
         console.log(err.message);
         })
 }, []);
+
+// const appointments = getAppointmentsForDay(state, day);
+
+// const schedule = appointments.map((appointment) => {
+//   const interview = getInterview(state, appointment.interview);
+
+//   return (
+//     <Appointment
+//       key={appointment.id}
+//       id={appointment.id}
+//       time={appointment.time}
+//       interview={interview}
+//     />
+//   );
+// });
+// }
 
   const appointments = getAppointmentsForDay(state, state.day)
 
@@ -130,4 +149,4 @@ export default function Application(props) {
       </section>
     </main>
   );
-}
+};
