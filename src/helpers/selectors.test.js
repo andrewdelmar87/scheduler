@@ -5,12 +5,14 @@ const state = {
     {
       id: 1,
       name: "Monday",
-      appointments: [1, 2, 3]
+      appointments: [1, 2, 3],
+      interviewers:[1,2,3]
     },
     {
       id: 2,
       name: "Tuesday",
-      appointments: [4, 5]
+      appointments: [4, 5],
+      interviewers:[1,2]
     }
   ],
   appointments: {
@@ -38,9 +40,13 @@ const state = {
       id: 2,
       name: "Tori Malcolm",
       avatar: "https://i.imgur.com/Nmx0Qxo.png"
-    }
+    },
+    "3":{ id: 3, name: "Mildred Nazir", avatar: "https://i.imgur.com/T2WwVfS.png" }
   }
 };
+
+
+
 
 test("getAppointmentsForDay returns an array", () => {
   const result = getAppointmentsForDay(state, "Monday");
@@ -68,6 +74,8 @@ test("getAppointmentsForDay returns an empty array when the day is not found", (
   expect(result.length).toEqual(0);
 });
 
+
+
 test("getInterview returns an object with the interviewer data", () => {
   const result = getInterview(state, state.appointments["3"].interview);
   expect(result).toEqual(
@@ -87,7 +95,8 @@ test("getInterview returns null if no interview is booked", () => {
   expect(result).toBeNull();
 });
 
-test("getInterviewersByDay returns an array", () => {
+
+test("getInterviewersForDay returns an array", () => {
   const result = getInterviewersForDay(state, "Monday");
   expect(Array.isArray(result)).toBe(true);
 });
