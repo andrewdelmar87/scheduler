@@ -80,9 +80,8 @@ export default function Appointment(props) {
       <Form
         interviewers={props.interviewers}
         onSave={save}
-        onCancel={() => 
-          confirm()
-        }
+        onCancel={() => {
+          back()}}
       />
     )}
     {mode === SAVING && (
