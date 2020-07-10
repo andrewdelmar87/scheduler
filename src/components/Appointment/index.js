@@ -25,10 +25,9 @@ export default function Appointment(props) {
     };
     props.bookInterview(props.id, interview)
     .then(() => {
-      
       transition(SHOW)
     })
-  }
+  };
 
   return <article className="appointment">
     <Header time={props.time} />
