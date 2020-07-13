@@ -18,13 +18,22 @@ export default function Form(props) {
       <section className="appointment__card-left">
         <form autoComplete="off">
           <input
-            name="name"
+            // name="name"
+            // className="appointment__create-input text--semi-bold"
+            // value={name}
+            // type="text"
+            // placeholder="Enter Student Name"
+            // onSubmit={event => event.preventDefault()}                  
+            // onChange={(event) => setName(event.target.value)}
             className="appointment__create-input text--semi-bold"
-            value={name}
+            name="name"
             type="text"
             placeholder="Enter Student Name"
-            onSubmit={event => event.preventDefault()}                  
-            onChange={(event) => setName(event.target.value)}
+            value={name}
+            onChange={event => {
+              setName(event.target.value);
+            }}
+            data-testid="student-name-input"
           />       
         </form>
         <InterviewerList
