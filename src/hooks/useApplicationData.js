@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios"
+import axios from "axios";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -10,8 +10,8 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
-  const day = state.day;
-  const appointments = state.appointments
+  const day = state.day; //delete then test
+  const appointments = state.appointments; //delete then test
 
   useEffect(() => {
     Promise.all([
@@ -19,12 +19,12 @@ export default function useApplicationData() {
       axios.get(`/api/appointments`),
       axios.get(`/api/interviewers`)
     ]).then((all) => {
-      setState(prev => ({...state, days: all[0].data, appointments: all[1].data, interviewers: all[2].data}));
+      setState(prev => ({ ...state, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
     })
-      .catch(err => {
-        console.log(err.message);
-        })
-  }, [day, appointments])
+      .catch(error => {
+        console.log(error.message);
+      })
+  }, []);
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -35,16 +35,14 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointment
     };
-    return axios.put(`/api/appointments/${id}`, {interview: interview})
-    .then((res) =>{
-    setState({
-      ...state,
-      appointments })
-    return res;
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+    return axios.put(`/api/appointments/${id}`, { interview: interview })
+      .then((res) => {
+        setState({
+          ...state,
+          appointments
+        })
+        return res;
+      });
   };
 
   function cancelInterview(id) {
@@ -57,16 +55,13 @@ export default function useApplicationData() {
       [id]: appointment
     };
     return axios.delete(`/api/appointments/${id}`)
-    .then((res) => {
-      setState({
-        ...state,
-        appointments
-      })
-      return res;
-    })
-    .catch((error) => {
-      console.log(error);
-    })
+      .then((res) => {
+        setState({
+          ...state,
+          appointments
+        })
+        return res;
+      });
   }
 
   return {
@@ -76,4 +71,3 @@ export default function useApplicationData() {
     cancelInterview
   };
 }
-
