@@ -3,7 +3,7 @@ Scheduler allows users to schedule interviews between Monday and Friday. Users c
 
 This app was built with React and tested with storybook, JEST, and Cypress.
 
-![Booking interviews](images/book-interview.gif)
+![Booking interviews](images/book-interview.gif "Booking interviews")
 ![Delete interviews](images/delete-interview.gif)
 ![Edit interviews](images/edit-interview.gif)
 
