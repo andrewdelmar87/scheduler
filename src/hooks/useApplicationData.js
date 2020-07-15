@@ -10,8 +10,8 @@ export default function useApplicationData() {
   });
 
   const setDay = day => setState({ ...state, day });
-  const day = state.day; //delete then test
-  const appointments = state.appointments; //delete then test
+  const day = state.day; 
+  const appointments = state.appointments; 
 
   useEffect(() => {
     Promise.all([
@@ -19,10 +19,10 @@ export default function useApplicationData() {
       axios.get(`/api/appointments`),
       axios.get(`/api/interviewers`)
     ]).then((all) => {
-      setState(prev => ({ ...state, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
+      setState(prev => ({ ...state, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }))
     })
       .catch(error => {
-        console.log(error.message);
+        console.log(error.message)
       })
   }, []);
 
@@ -30,11 +30,11 @@ export default function useApplicationData() {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }
-    };
+    }
     const appointments = {
       ...state.appointments,
       [id]: appointment
-    };
+    }
     return axios.put(`/api/appointments/${id}`, { interview: interview })
       .then((res) => {
         setState({
@@ -42,18 +42,18 @@ export default function useApplicationData() {
           appointments
         })
         return res;
-      });
+      })
   };
 
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
       interview: null
-    };
+    }
     const appointments = {
       ...state.appointments,
       [id]: appointment
-    };
+    }
     return axios.delete(`/api/appointments/${id}`)
       .then((res) => {
         setState({
@@ -61,8 +61,8 @@ export default function useApplicationData() {
           appointments
         })
         return res;
-      });
-  }
+      })
+  };
 
   return {
     state,
@@ -70,4 +70,4 @@ export default function useApplicationData() {
     bookInterview,
     cancelInterview
   };
-}
+};

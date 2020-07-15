@@ -12,18 +12,18 @@ export default function Application(props) {
     setDay,
     bookInterview,
     cancelInterview
-  } = useApplicationData();
+  } = useApplicationData()
   
-const getSpotsForDay = function(day){
-  const appointments = getAppointmentsForDay(state, day);
-  const remainingSpots = appointments.filter(appointment => appointment.interview === null)
-  return remainingSpots.length;
-};
+  const getSpotsForDay = function(day){
+    const appointments = getAppointmentsForDay(state, day);
+    const remainingSpots = appointments.filter(appointment => appointment.interview === null)
+    return remainingSpots.length
+  }
 
-  const interviewers = getInterviewersForDay(state, state.day);
-  const appointments = getAppointmentsForDay(state, state.day);
+  const interviewers = getInterviewersForDay(state, state.day)
+  const appointments = getAppointmentsForDay(state, state.day)
   const schedule = appointments.map((appointment) => {
-    const interview = getInterview(state, appointment.interview);
+    const interview = getInterview(state, appointment.interview)
     return (
       <Appointment
         key={appointment.id}
@@ -34,8 +34,8 @@ const getSpotsForDay = function(day){
         bookInterview={bookInterview}
         cancelInterview={cancelInterview}
       />
-    );
-  });
+    )
+  })
 
   return (
     <main className="layout">
@@ -64,5 +64,5 @@ const getSpotsForDay = function(day){
         <Appointment key="last" time="5pm" />
       </section>
     </main>
-  );
+  )
 };
